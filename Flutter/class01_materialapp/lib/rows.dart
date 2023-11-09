@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'container.dart';
 
 var stars = Row(
   mainAxisSize: MainAxisSize.min,
@@ -34,6 +35,7 @@ final ratings = Container(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
+      verticalDirection: VerticalDirection.down,
       children: [
         Text("123"),
         stars,
@@ -52,7 +54,8 @@ final ratings = Container(
             Icon(Icons.umbrella),
             Icon(Icons.access_alarm),
           ],
-        )
+        ),
+        mycontainer()
       ],
     ));
 

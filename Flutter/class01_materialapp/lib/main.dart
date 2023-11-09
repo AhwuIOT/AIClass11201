@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'materialapp.dart';
 import 'rows.dart';
+import 'container.dart';
 
 void main() {
   runApp(MyWidget());
@@ -11,12 +12,7 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(
-      body: LayoutBuilder(builder: ((context, constraints) {
-        // double maxdisp = constraints.maxWidth / 5.0;
-        return Expanded(child: myrow());
-      })),
-    ));
+    return MaterialApp(home: Scaffold(body: myrow()));
   }
 }
 // var hiflutter = Text(
