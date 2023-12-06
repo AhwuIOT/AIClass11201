@@ -1,0 +1,49 @@
+name: sliver_test
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.1.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/movies.json
+    - assets/posters/interstellar.jpg
+    - assets/posters/gladiator.jpg
+    - assets/posters/lotr.jpg
+    - assets/posters/coco.jpg
+    - assets/posters/3idiots.jpg
+    - assets/posters/trumanshow.jpg
+    - assets/posters/royaltenenbaums.jpg
+    - assets/posters/inception.jpg
+    - assets/posters/avengersinfinitywar.jpg
+    - assets/posters/avengersendgame.jpg
+    - assets/backdrop/interstellar_backdrop.jpg
+    - assets/backdrop/gladiator_backdrop.jpg
+    - assets/backdrop/lotr_backdrop.jpg
+    - assets/backdrop/coco_backdrop.jpg
+    - assets/backdrop/3idiots_backdrop.jpg
+    - assets/backdrop/trumanshow_backdrop.jpg
+    - assets/backdrop/royaltenenbaums_backdrop.jpg
+    - assets/backdrop/inception_backdrop.jpg
+    - assets/backdrop/avengersinfinitywar_backdrop.jpg
+    - assets/backdrop/avengersendgame_backdrop.jpg
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/Raleway-Regular.ttf
+        - asset: assets/fonts/Raleway-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Raleway-Bold.ttf
+          weight: 700

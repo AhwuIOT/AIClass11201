@@ -24,6 +24,42 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        appBar: AppBar(
+          title: Text('ListView示例'),
+        ),
+        body: ListView.builder(
+          itemCount: cards.length, // 設置清單中的項目數
+          itemBuilder: (BuildContext context, int index) {
+            return cards[index]; // 返回清單中的每個Card
+          },
+        ),
+        floatingActionButton: TextButton(
+          onPressed: () {
+            setState(() {
+              cards.add(Card(
+                child: ListTile(
+                  title: Text("123"),
+                  trailing: TextButton(
+                    onPressed: () {
+                      setState(() {
+                        cards.removeAt(0);
+                      });
+                    },
+                    child: Icon(Icons.delete),
+                  ),
+                ),
+              ));
+            });
+          },
+          child: Icon(Icons.add),
+        ));
+}
+=======
+>>>>>>> Stashed changes
       appBar: AppBar(
         title: Text('ListView示例'),
       ),
@@ -50,4 +86,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+<<<<<<< Updated upstream
+=======
+>>>>>>> 5ba66f8c2793616e48e54d8ac96a085e4101cf51
+>>>>>>> Stashed changes
 }
