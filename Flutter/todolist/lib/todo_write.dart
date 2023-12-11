@@ -6,10 +6,8 @@ import 'todo_all.dart';
 TextEditingController _controller = TextEditingController();
 TextEditingController _todocontroller = TextEditingController();
 String Todocontent = '';
-Map<String, List<String>> myMap = {
-  'key1': ['item1', 'item2', 'item3'],
-  'key2': ['item4', 'item5']
-};
+Map<String, List<String>> task = {'Complete': [], 'Uncomplete': []};
+Map<String, bool> isChanged = {};
 
 class todoList extends StatefulWidget {
   const todoList({super.key});
@@ -18,6 +16,20 @@ class todoList extends StatefulWidget {
 }
 
 class _todoListState extends State<todoList> {
+  Future<void> saveData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    task['Uncomplete'] = prefs.getStringList('Uncomplete') ?? [];
+    task['Uncomplete']?.forEach((element) {
+      isChanged[element] = prefs.getBool(element) ?? false;
+    });
+    task['Uncomplete']!.add(Todocontent);
+    await prefs.setStringList('Uncomplete', task['Uncomplete']!);
+    isChanged[Todocontent] = false;
+    await prefs.setBool(Todocontent, false);
+    // print("Task的check值${prefs.getBool(Todocontent)}");
+    print("isChange這個Map的值${isChanged}");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +46,7 @@ class _todoListState extends State<todoList> {
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
+              //日期的輸入盒
               TextField(
                 textDirection: TextDirection.ltr,
                 controller: _controller,
@@ -48,11 +61,12 @@ class _todoListState extends State<todoList> {
                 style:
                     TextStyle(color: Theme.of(context).colorScheme.secondary),
               ),
+              //ToDo的輸入盒
               TextField(
                   controller: _todocontroller,
-                  onChanged: (value) {
+                  onTapOutside: (PointerDownEvent) {
                     setState(() {
-                      Todocontent = value;
+                      Todocontent = _todocontroller.text;
                     });
                   },
                   decoration: InputDecoration(
@@ -66,16 +80,22 @@ class _todoListState extends State<todoList> {
               SizedBox(
                 height: 20,
               ),
+              //OK的按鈕
               TextButton(
                   onPressed: () {
                     setState(() {
+                      saveData();
+                      // print("SaveData完data${task['Uncomplete']}");
+                      // print("SaveData完${isChanged}");
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (contxt) => MyApp(
-                                    data: Todocontent,
+                                    data: task['Uncomplete'],
+                                    isChanged: isChanged,
                                   )));
                       _todocontroller.text = '';
+                      // print("在todowrite的check值${isChanged}");
                     });
                   },
                   child: Text(
@@ -100,7 +120,7 @@ class _TodoDateState extends State<TodoDate> {
   Future<void> _loadDate() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String date = selectedDate.toLocal().toString() ?? '';
-    print(date);
+    // print(date);
   }
 
   Future<void> selectDate(BuildContext context) async {
@@ -110,12 +130,14 @@ class _TodoDateState extends State<TodoDate> {
       firstDate: DateTime(2021),
       lastDate: DateTime(2100),
     );
-    if (picked != null && picked != selectedDate) {
+    if ((picked != null) || (picked != selectedDate)) {
       setState(() {
-        selectedDate = picked;
-        _controller.text = "${picked.year}/${picked.month}/${picked.day}";
+        // picked = picked ?? DateTime.now();
+        selectedDate = picked ?? DateTime.now();
+        _controller.text =
+            "${selectedDate.year}/${selectedDate.month}/${selectedDate.day}";
       });
-      _loadDate();
+      // _loadDate();
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => todoList()));
     }
