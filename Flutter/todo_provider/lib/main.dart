@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:provider/provider.dart';
 import 'todo_provider.dart';
 import 'todo_model.dart';
@@ -17,10 +18,28 @@ class MyApp extends StatelessWidget {
         title: 'Todo List',
         home: TodoListPage(),
         debugShowCheckedModeBanner: false,
+=======
+
+void main() {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text('Hello World!'),
+        ),
+>>>>>>> f58689aec1252e0c7dd36458b46dbbf0357378d8
       ),
     );
   }
 }
+<<<<<<< HEAD
 
 class TodoListPage extends StatefulWidget {
   const TodoListPage({super.key});
@@ -95,3 +114,5 @@ class _TodoListPageState extends State<TodoListPage> {
     );
   }
 }
+=======
+>>>>>>> f58689aec1252e0c7dd36458b46dbbf0357378d8

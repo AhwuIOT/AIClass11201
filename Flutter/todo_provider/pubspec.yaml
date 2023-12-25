@@ -9,8 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+<<<<<<< HEAD
   provider: ^6.1.1
   shared_preferences: ^2.2.2
+=======
+>>>>>>> f58689aec1252e0c7dd36458b46dbbf0357378d8
 
 dev_dependencies:
   flutter_test:
